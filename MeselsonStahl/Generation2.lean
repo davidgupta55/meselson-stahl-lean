@@ -110,6 +110,23 @@ theorem gen2_result {ε : ℚ} (h0 : 0 ≤ ε) (hε : ε < 1/8) :
       obs2 ∈ E2 ε Semiconservative :=
   ⟨gen2_refutes_cons_disp h0 hε, obs2_mem_semi h0⟩
 
+/-- The data are *consistent* with semiconservative replication: `{0, 1/2}`
+does not refute it (uses the framework lemma `not_refutes`). -/
+theorem gen2_not_refutes_semi {ε : ℚ} (h0 : 0 ≤ ε) :
+    ¬ refutes (E2 ε) {Semiconservative} obs2 := by
+  rw [not_refutes]
+  exact ⟨Semiconservative, by simp, obs2_mem_semi h0⟩
+
+/-- Elementwise reading of discrimination (via `discriminates_iff`): any
+generation-2 outcome the semiconservative model allows is impossible under
+both rivals. -/
+theorem gen2_semi_outcome_excludes_rivals {ε : ℚ} (hε : ε < 1/8) (o : Obs)
+    (ho : o ∈ E2 ε Semiconservative) :
+    o ∉ E2 ε Conservative ∧ o ∉ E2 ε UniformDispersive := by
+  -- `h m2 hm2 o` : if `o` is semiconservative, it is not an `m2` outcome
+  have h := (discriminates_iff.mp (gen2_discriminates_semi hε)) Semiconservative (by simp)
+  exact ⟨h Conservative (by simp) o ho, h UniformDispersive (by simp) o ho⟩
+
 /-- The concrete instance with the reported ±2% error. -/
 theorem gen2_result_2pct :
     refutes (E2 (1/50)) {Conservative, UniformDispersive} obs2 ∧
