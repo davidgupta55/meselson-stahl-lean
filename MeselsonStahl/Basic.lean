@@ -44,8 +44,9 @@ open Model
 centrifuge tube, on the 0 (light) … 1 (heavy) scale. -/
 abbrev Obs : Type := Finset ℚ
 
-/-- The Meselson–Stahl setting for Klavins's framework. -/
-def MS : Setting := ⟨Model, Obs⟩
+/-- The Meselson–Stahl setting for Klavins's framework. (An `abbrev`, so Lean
+knows `MS.Model` is just `Model` and `MS.Obs` is just `Obs`.) -/
+abbrev MS : Setting := ⟨Model, Obs⟩
 
 /-! ## Ideal bands predicted by each model -/
 

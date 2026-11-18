@@ -7,7 +7,7 @@ defaultTargets = ["MeselsonStahl"]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
 autoImplicit = false
 relaxedAutoImplicit = false
-weak.linter.mathlibStandardSet = true
+weak.linter.mathlibStandardSet = false # Mathlib house-style linters off: this is a teaching project
 maxSynthPendingDepth = 3
 weak.linter.style.header = false # project is MIT, not Apache like Mathlib
 
